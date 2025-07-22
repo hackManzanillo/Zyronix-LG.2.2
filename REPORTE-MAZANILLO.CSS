@@ -1,0 +1,25 @@
+#reportContainer {
+  margin: 100px auto 50px;
+  max-width: 95%;
+  overflow-x: auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 20px;
+}
+
+#reportContainer table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#reportContainer th, #reportContainer td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#reportContainer th {
+  background: #162938;
+  color: white;
+}
+

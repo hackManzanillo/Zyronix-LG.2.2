@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Revalidaciones Manual</title>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      flex: 1;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+
+    .contenedor-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .cuadro {
+      background-color: white;
+      border-left: 5px solid #007BFF;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .cuadro h4 {
+      margin: 0 0 10px;
+    }
+
+    .estado {
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Agregar Revalidación</h2>
+
+  <form id="formulario">
+    <input type="text" id="referencia" placeholder="Referencia" required>
+    <input type="text" id="bl" placeholder="BL" required>
+    <input type="text" id="estado" placeholder="Estado" required>
+    <button type="submit">Agregar</button>
+    <button type="button" onclick="descargarExcel()">Descargar Excel</button>
+  </form>
+
+  <div class="contenedor-lista" id="lista"></div>
+
+  <script>
+    const datos = [];
+
+    document.getElementById("formulario").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const referencia = document.getElementById("referencia").value.trim();
+      const bl = document.getElementById("bl").value.trim();
+      const estado = document.getElementById("estado").value.trim();
+
+      if (!referencia || !bl || !estado) return;
+
+      // Agregar a la lista visual
+      const cuadro = document.createElement("div");
+      cuadro.className = "cuadro";
+      cuadro.innerHTML = `
+        <h4>Referencia: ${referencia}</h4>
+        <p>BL: ${bl}</p>
+        <p>Estado: <span class="estado">${estado}</span></p>
+      `;
+      document.getElementById("lista").appendChild(cuadro);
+
+      // Agregar a los datos para exportar
+      datos.push({ Referencia: referencia, BL: bl, Estado: estado });
+
+      // Limpiar formulario
+      document.getElementById("referencia").value = "";
+      document.getElementById("bl").value = "";
+      document.getElementById("estado").value = "";
+    });
+
+    function descargarExcel() {
+      const ws = XLSX.utils.json_to_sheet(datos);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Revalidaciones");
+
+      XLSX.writeFile(wb, "revalidaciones.xlsx");
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
