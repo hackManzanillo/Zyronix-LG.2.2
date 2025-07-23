@@ -12,3 +12,19 @@ document.addEventListener('click', (e) => {
     dropdownMenu.classList.remove('active');
   }
 });
+
+
+const dropdownBtn1 = document.getElementById('dropdownBtn1');
+const dropdownMenu1 = document.getElementById('dropdownMenu1');
+
+dropdownBtn1.addEventListener('click', (e) => {
+  e.preventDefault();
+  dropdownMenu1.classList.toggle('active');
+});
+
+// Cerrar dropdown si se hace clic fuera
+document.addEventListener('click', (e) => {
+  if (!dropdownBtn1.contains(e.target) && !dropdownMenu1.contains(e.target)) {
+    dropdownMenu1.classList.remove('active');
+  }
+});
