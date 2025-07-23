@@ -27,7 +27,7 @@ html_form = '''
   </style>
 </head>
 <body>
-
+  
   <h2>Agregar Revalidación</h2>
 
   <form method="POST">
@@ -37,7 +37,7 @@ html_form = '''
       <option value="" disabled selected>-- Seleccione Estado --</option>
       <option value="REVALIDADO">REVALIDADO</option>
       <option value="PROGRAMADO">PROGRAMADO</option>
-      <option value="PENDIENTE">PENDIENTE</option>
+      <option value="PENDIENTE">PENDIENTE</option>      
     </select>
     <input type="submit" value="Agregar">
   </form>
