@@ -122,3 +122,23 @@ nav.navigation > a:hover::after,
 .dropdown-content.active {
   display: flex;
 }
+
+
+
+
+.submenu > .dropdown-content {
+  display: none;  /* oculto por defecto */
+  position: absolute;
+  top: 0;
+  right: 100%;
+  min-width: 180px;
+  background-color: #111;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 2;
+  left: auto;
+}
+
+.submenu > .dropdown-content.active {
+  display: block;
+}
+

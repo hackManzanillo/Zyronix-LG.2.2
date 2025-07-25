@@ -28,3 +28,21 @@ document.addEventListener('click', (e) => {
     dropdownMenu1.classList.remove('active');
   }
 });
+
+
+// Obtener elementos
+const trackingBtn = document.getElementById('trackingBtn');
+const trackingMenu = document.getElementById('trackingMenu');
+
+// Abrir/cerrar submenu tracking al hacer clic
+trackingBtn.addEventListener('click', e => {
+  e.preventDefault();
+  trackingMenu.classList.toggle('active');
+});
+
+// Cerrar submenu tracking si se hace clic fuera del botón o el submenu
+document.addEventListener('click', e => {
+  if (!trackingBtn.contains(e.target) && !trackingMenu.contains(e.target)) {
+    trackingMenu.classList.remove('active');
+  }
+});

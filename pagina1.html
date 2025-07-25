@@ -1,24 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zyronix-LG - Menú con Dropdown</title>
+  <title>Zyronix-LG - Menú con Dropdown Anidado</title>
   <link rel="stylesheet" href="DiseñoPagina1.css" />
+  <style>
+    /* Estilos para dropdown y submenu */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #111;
+      min-width: 180px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 10px 14px;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .dropdown:hover>.dropdown-content {
+      display: block;
+    }
+
+    /* Submenu estilo */
+    .submenu {
+      position: relative;
+    }
+
+    .submenu:hover>.dropdown-content {
+      display: block;
+      top: 0;
+      right: 100%;
+      margin-right: 1px;
+      left: auto;
+    }
+
+    .submenu .dropdown-content {
+      position: absolute;
+      top: 0;
+      right: 100%;
+      min-width: 180px;
+      background-color: #111;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+      display: none;
+      left: auto;
+    }
+  </style>
 </head>
+
 <body>
   <header>
     <h2 class="logo">Zyronix-LG</h2>
-    
+
     <nav class="navigation">
       <div class="dropdown">
         <a href="javascript:void(0)" class="dropbtn" id="dropdownBtn">
           Reportes <span class="ivu-icon-arrow-down-b"></span>
         </a>
         <div class="dropdown-content" id="dropdownMenu">
-          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BDC4A1189-FF37-4F03-A5A9-F16800B522F7%7D&file=REVALIDACIONES%20MANZANILLO%202025%201%20(1).xlsx&action=default&mobileredirect=true"><center>Reporte Manzanillo</center></a>
-          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BAAA118C7-F646-4DB4-A1D9-BFF3B8FD8041%7D&file=PAGOS%20DE%20REVALIDACION%20%202025%201.xlsx&action=default&mobileredirect=true"><center>Reporte De Pagos</center></a>
-          <a href="CuentasBancarias.html"><center>Cuentas De Navieras</center></a>
+          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BDC4A1189-FF37-4F03-A5A9-F16800B522F7%7D&file=REVALIDACIONES%20MANZANILLO%202025%201%20(1).xlsx&action=default&mobileredirect=true"
+            target="_blank">Reporte Manzanillo</a>
+          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BAAA118C7-F646-4DB4-A1D9-BFF3B8FD8041%7D&file=PAGOS%20DE%20REVALIDACION%20%202025%201.xlsx&action=default&mobileredirect=true"
+            target="_blank">Reporte De Pagos</a>
+          <a href="cuentaslinea.html">Cuentas Bancarias</a>
         </div>
       </div>
 
@@ -27,19 +85,45 @@
           Navieras <span class="ivu-icon-arrow-down-b"></span>
         </a>
         <div class="dropdown-content" id="dropdownMenu1">
-          <a href="#"><center>Traking</center></a>
-          <a href="#"><center>Estado De Carga</center></a>
+          <!-- Submenu para Tracking -->
+          <div class="submenu">
+            <a href="javascript:void(0)" id="trackingBtn">◃Tracking</a>
+            <div class="dropdown-content" id="trackingMenu">
+              <a href="https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do" target="_blank">Evergreen</a>
+              <a href="https://www.hapag-lloyd.com/en/online-business/tracing/tracing-by-container.html"
+                target="_blank">Hapag-Lloyd</a>
+              <a href="https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking" target="_blank">ONE</a>
+              <a href="https://elines.coscoshipping.com/ebusiness/cargoTracking/" target="_blank">COSCO</a>
+              <a href="https://www.cma-cgm.com/ebusiness/tracking" target="_blank">CMA CGM</a>
+              <a href="https://www.maersk.com/tracking" target="_blank">Maersk</a>
+              <a href="https://www.msc.com/track-a-shipment" target="_blank">MSC</a>
+              <a href="https://www.oocl.com/eng/ourservices/eservices/cargotracking/Pages/cargotracking.aspx"
+                target="_blank">OOCL</a>
+              <a href="https://www.zim.com/tools/track-a-shipment" target="_blank">ZIM</a>
+              <a href="https://www.tslines.com/hk/tracking?nowmenu=Search%20by%20BL%20number" target="_blank">TS
+                Lines</a>
+              <a href="https://www.sea-lead.com/track-shipment/" target="_blank">Sealand</a>
+              <a href="https://www.emiratesline.com/track/" target="_blank">Emirates Shipping</a>
+            </div>
+          </div>
+
+          <a href="estadoCarga.html">Estado De Carga</a>
         </div>
       </div>
 
 
 
 
-      <a href="#">Herramientas</a>
-      <a href="#">Contacto</a>
+      <a href="estadoCarga.html">Estado De Carga</a>
+      </div>
+      </div>
+
+      <a href="herramientas.html">Herramientas</a>
+      <a href="contacto.html">Contacto</a>
     </nav>
   </header>
 
   <script src="REPORTES.JS"></script>
 </body>
+
 </html>
