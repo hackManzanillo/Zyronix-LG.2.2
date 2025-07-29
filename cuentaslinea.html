@@ -9,8 +9,8 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-image: url('https://www.transparenttextures.com/patterns/circles-light.png'); /* patrón tecnológico */
-      background-color: #0b1120; /* fondo oscuro elegante */
+      background-image: url('https://www.transparenttextures.com/patterns/circles-light.png');
+      background-color: #0b1120;
       color: #ffffff;
       padding: 40px 20px;
       margin: 0;
@@ -129,7 +129,7 @@
 </head>
 <body>
 
-<h1>Gestión de Navieras y CSF</h1>
+<h1>Cuenta de Navieras y CSF</h1>
 
 <div class="container" id="navierasContainer">
   <!-- Cuadros generados por JS -->
@@ -137,9 +137,12 @@
 
 <script>
   const navieras = [
-    "Maersk", "MSC", "COSCO",
-    "CMA CGM", "Hapag-Lloyd", "ONE",
-    "Evergreen", "ZIM"
+    "CMA CGM", "COSCO", "WAN HAI",
+    "PIL", "RCL", "YAMATO",
+    "EVERGREEN", "ONE",
+    "TS LINE", "MAERSK",
+    "ZIM", "OOCL",
+    "SEALAND", "MSC", "HAPAG-LLOYD"
   ];
 
   const container = document.getElementById('navierasContainer');
@@ -175,26 +178,28 @@
   }
 
   navieras.forEach(naviera => {
+    const safeId = naviera.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_]/g, ""); // ID sin espacios ni símbolos
+
     const box = document.createElement("div");
     box.className = "naviera-box";
 
     box.innerHTML = `
       <h3>${naviera}</h3>
-      <textarea id="txt_${naviera}" disabled></textarea>
+      <textarea id="txt_${safeId}" disabled></textarea>
       <div class="buttons">
-        <button class="edit-btn" id="edit_${naviera}">Editar</button>
+        <button class="edit-btn" id="edit_${safeId}">Editar</button>
         <button class="upload-btn">Subir CSF
-          <input type="file" accept="application/pdf" id="file_${naviera}">
+          <input type="file" accept="application/pdf" id="file_${safeId}">
         </button>
-        <button class="download-btn" id="download_${naviera}">Descargar CSF</button>
+        <button class="download-btn" id="download_${safeId}">Descargar CSF</button>
       </div>
     `;
     container.appendChild(box);
 
-    const textarea = box.querySelector("textarea");
-    const editBtn = box.querySelector(`#edit_${naviera}`);
-    const fileInput = box.querySelector(`#file_${naviera}`);
-    const downloadBtn = box.querySelector(`#download_${naviera}`);
+    const textarea = box.querySelector(`#txt_${safeId}`);
+    const editBtn = box.querySelector(`#edit_${safeId}`);
+    const fileInput = box.querySelector(`#file_${safeId}`);
+    const downloadBtn = box.querySelector(`#download_${safeId}`);
 
     textarea.value = cargarTexto(naviera);
 

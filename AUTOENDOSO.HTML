@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Endosador Automático</title>
+    <link rel="stylesheet" href="AUTOENDOSO.CSS" />
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            padding: 50px;
+            background: #121212;
+            color: white;
+        }
+
+        label {
+            margin: 0 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.3);
+            margin-right: 6px;
+            cursor: pointer;
+        }
+
+        #controls {
+            margin-bottom: 25px;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+
+    <h2>Sube uno o más archivos PDF para endosar</h2>
+
+    <div id="controls">
+        <label>
+            <input type="checkbox" id="selloEnvases" />
+            <span></span>
+            Sello Envases
+        </label>
+
+        <label>
+            <input type="checkbox" id="selloAltaCargo" checked />
+            <span></span>
+            Sello AltaCargo
+        </label>
+
+    </div>
+
+    <input type="file" id="pdfUploader" accept="application/pdf" multiple style="padding: 10px; margin-top: 20px;" />
+
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+    <script>
+        const uploader = document.getElementById("pdfUploader");
+        const chkEnvases = document.getElementById("selloEnvases");
+        const chkAltaCargo = document.getElementById("selloAltaCargo");
+
+        async function cargarSello(pdfDoc, url, tipo = 'png') {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`No se pudo cargar el archivo de sello: ${url}`);
+            const bytes = await response.arrayBuffer();
+            if (tipo === 'png') return pdfDoc.embedPng(bytes);
+            else if (tipo === 'jpg' || tipo === 'jpeg') return pdfDoc.embedJpg(bytes);
+            else throw new Error('Tipo de imagen no soportado');
+        }
+
+        uploader.addEventListener("change", async (event) => {
+            const files = event.target.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.onload = async function (e) {
+                    try {
+                        const arrayBuffer = e.target.result;
+                        const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+                        const pages = pdfDoc.getPages();
+
+                        let selloEnvasesImg = null;
+                        let selloAltaCargoImg = null;
+
+                        if (chkEnvases.checked) {
+                            selloEnvasesImg = await cargarSello(pdfDoc, 'selloEnvases.png', 'png');
+                        }
+                        if (chkAltaCargo.checked) {
+                            selloAltaCargoImg = await cargarSello(pdfDoc, 'selloAltaCargo.png', 'png');
+                        }
+
+                        if (!selloEnvasesImg && !selloAltaCargoImg) {
+                            alert("⚠️ Debes seleccionar al menos un sello para agregar.");
+                            return;
+                        }
+
+                        const selloWidthALTACARGO = 200;  // Tamaño para sello AltaCargo
+                        const selloWidthENVASES = 220;    // Tamaño para sello Envases (más pequeño)
+
+                        for (let index = 0; index < pages.length; index++) {
+                            const page = pages[index];
+                            const { width, height } = page.getSize();
+
+                            if (selloEnvasesImg) {
+                                const selloHeight = (selloEnvasesImg.height / selloEnvasesImg.width) * selloWidthENVASES;
+                                page.drawImage(selloEnvasesImg, {
+                                    x: 10,
+                                    y: height - selloHeight - 450,  // Ajusta verticalmente aquí si quieres
+                                    width: selloWidthENVASES,
+                                    height: selloHeight,
+                                    opacity: 1
+                                });
+                            }
+
+                            if (selloAltaCargoImg) {
+                                const selloHeight = (selloAltaCargoImg.height / selloAltaCargoImg.width) * selloWidthALTACARGO;
+                                page.drawImage(selloAltaCargoImg, {
+                                    x: width - selloWidthALTACARGO - 10,
+                                    y: height - selloHeight - 430,  // Ajusta verticalmente aquí si quieres
+                                    width: selloWidthALTACARGO,
+                                    height: selloHeight,
+                                    opacity: 1
+                                });
+                            }
+
+                            console.log(`✅ Sellos insertados en página ${index + 1}`);
+                        }
+
+
+                        const pdfBytes = await pdfDoc.save();
+                        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                        const url = URL.createObjectURL(blob);
+
+                        const link = document.createElement('a');
+                        const blName = file.name.replace('.pdf', '').replace(/[^a-zA-Z0-9]/g, '');
+                        link.href = url;
+                        link.download = `BL-ENDOSADO-${blName}.pdf`;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+
+                        URL.revokeObjectURL(url);
+                    } catch (err) {
+                        console.error("❌ Error procesando el archivo:", err);
+                        alert("⚠️ Error procesando el archivo PDF:\n" + err.message);
+                    }
+                };
+
+                reader.readAsArrayBuffer(file);
+            }
+
+            uploader.value = "";
+        });
+    </script>
+
+    <div class="footer">
+  Endoso automático creado por <span>Zyronix-LG</span> 🌬️🍃
+  
+</div>
+
+</body>
+
+</html>
