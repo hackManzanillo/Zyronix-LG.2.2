@@ -17,6 +17,7 @@ body {
   background: url("UDC PRO.gif") no-repeat center center fixed;
   background-size: cover;
   padding-top: 100px; /* espacio para el header */
+  overflow-x: hidden;
 }
 
 /* Header */
@@ -38,7 +39,10 @@ header {
   font-size: 2em;
   color: #fff;
   user-select: none;
-  white-space: nowrap;
+  white-space: nowrap;       /* evita que se parta en varias líneas */
+  overflow: hidden;
+  text-overflow: ellipsis;   /* por si es demasiado largo */
+  max-width: 100%;
 }
 
 .navigation {
@@ -57,6 +61,8 @@ header {
   color: #fff;
   font-weight: 500;
   transition: 0.3s ease;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .navigation .btnLogin-popup:hover {
@@ -213,9 +219,14 @@ input:-webkit-autofill {
     font-size: 1.5em;
   }
 
+  .navigation {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   .navigation .btnLogin-popup {
     width: auto;
-    padding: 8px 16px;
+    padding: 8px 20px;
     font-size: 0.9em;
   }
 
