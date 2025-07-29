@@ -5,76 +5,58 @@
   font-family: "Poppins", sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  background: url("UDC PRO.gif") no-repeat;
+  justify-content: center;
+  background: url("UDC PRO.gif") no-repeat center center fixed;
   background-size: cover;
-  background-position: center;
+  padding-top: 100px; /* espacio para el header */
 }
 
 /* Header */
-
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 100px;
+  padding: 15px 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 99;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
 }
 
 .logo {
   font-size: 2em;
   color: #fff;
   user-select: none;
+  white-space: nowrap;
 }
 
-.navigation a {
-  position: relative;
-  font-size: 1.1em;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  margin-left: 40px;
-}
-
-.navigation a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 100%;
-  height: 3px;
-  background: #fff;
-  border-radius: 5px;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.5s;
-}
-
-.navigation a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .navigation .btnLogin-popup {
-  width: 130px;
-  height: 50px;
+  padding: 10px 25px;
   background: transparent;
   border: 2px solid #fff;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 1.1em;
+  font-size: 1em;
   color: #fff;
   font-weight: 500;
-  margin-left: 40px;
-  transition: 0.5s;
+  transition: 0.3s ease;
 }
 
 .navigation .btnLogin-popup:hover {
@@ -82,12 +64,12 @@ header {
   color: #162938;
 }
 
-/* Wrapper */
-
+/* Login popup */
 .wrapper {
   position: relative;
-  width: 400px;
-  height: 440px;
+  width: 90%;
+  max-width: 400px;
+  height: auto;
   background: transparent;
   border: 2px solid #fff;
   border-radius: 20px;
@@ -100,6 +82,7 @@ header {
   transform: scale(0);
   transition: transform 0.5s ease, height 0.2s ease;
   z-index: 100;
+  margin-top: 30px;
 }
 
 .wrapper.active-popup {
@@ -109,10 +92,6 @@ header {
 .wrapper .form-box {
   width: 100%;
   padding: 40px;
-}
-
-.wrapper .form-box.login {
-  transform: translateX(0);
 }
 
 .wrapper .icon-close {
@@ -132,8 +111,7 @@ header {
   z-index: 1;
 }
 
-/* Form */
-
+/* Formulario */
 .form-box h2 {
   font-size: 2em;
   color: #fff;
@@ -172,7 +150,6 @@ header {
   transition: 0.5s;
 }
 
-/* CORREGIDO: Label se queda arriba si input tiene texto */
 .input-box input:focus ~ label,
 .input-box input:not(:placeholder-shown) ~ label {
   top: -5px;
@@ -186,8 +163,6 @@ header {
   line-height: 57px;
 }
 
-/* Botón */
-
 .btn {
   width: 100%;
   height: 45px;
@@ -199,15 +174,57 @@ header {
   font-size: 1em;
   color: #fff;
   font-weight: 500;
+  transition: 0.3s ease;
 }
 
-/* Evitar fondo blanco en autocompletado del navegador */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+.btn:hover {
+  background-color: #1e3c5a;
+}
+
+/* Mensaje de bienvenida */
+#welcomeMessage {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(22, 41, 56, 0.9);
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Evita fondo blanco en autocompletado */
+input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-  box-shadow: 0 0 0 1000px transparent inset !important;
   -webkit-text-fill-color: #fff !important;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .logo {
+    font-size: 1.5em;
+  }
+
+  .navigation .btnLogin-popup {
+    width: auto;
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+
+  .form-box h2 {
+    font-size: 1.5em;
+  }
+
+  #welcomeMessage {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
 }
