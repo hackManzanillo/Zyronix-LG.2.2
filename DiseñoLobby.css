@@ -1,0 +1,241 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url("UDC PRO.gif") no-repeat center center fixed;
+  background-size: cover;
+  padding-top: 100px; /* espacio para el header */
+  overflow-x: hidden;
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+}
+
+.logo {
+  font-size: 2em;
+  color: #fff;
+  user-select: none;
+  white-space: nowrap;       /* evita que se parta en varias líneas */
+  overflow: hidden;
+  text-overflow: ellipsis;   /* por si es demasiado largo */
+  max-width: 100%;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navigation .btnLogin-popup {
+  padding: 10px 25px;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s ease;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.navigation .btnLogin-popup:hover {
+  background: #fff;
+  color: #162938;
+}
+
+/* Login popup */
+.wrapper {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transform: scale(0);
+  transition: transform 0.5s ease, height 0.2s ease;
+  z-index: 100;
+  margin-top: 30px;
+}
+
+.wrapper.active-popup {
+  transform: scale(1);
+}
+
+.wrapper .form-box {
+  width: 100%;
+  padding: 40px;
+}
+
+.wrapper .icon-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  background: #162938;
+  font-size: 2em;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 20px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Formulario */
+.form-box h2 {
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid #fff;
+  margin: 30px 0;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: #fff;
+  font-weight: 600;
+  padding: 0 35px 0 5px;
+}
+
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: #fff;
+  font-weight: 500;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.input-box input:focus ~ label,
+.input-box input:not(:placeholder-shown) ~ label {
+  top: -5px;
+}
+
+.input-box .icon {
+  position: absolute;
+  right: 8px;
+  font-size: 1.2em;
+  color: #fff;
+  line-height: 57px;
+}
+
+.btn {
+  width: 100%;
+  height: 45px;
+  background: #162938;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #1e3c5a;
+}
+
+/* Mensaje de bienvenida */
+#welcomeMessage {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(22, 41, 56, 0.9);
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Evita fondo blanco en autocompletado */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .logo {
+    font-size: 1.5em;
+  }
+
+  .navigation {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .navigation .btnLogin-popup {
+    width: auto;
+    padding: 8px 20px;
+    font-size: 0.9em;
+  }
+
+  .form-box h2 {
+    font-size: 1.5em;
+  }
+
+  #welcomeMessage {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
