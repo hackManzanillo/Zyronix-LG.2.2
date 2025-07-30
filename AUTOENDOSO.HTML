@@ -29,7 +29,6 @@
         #controls {
             margin-bottom: 25px;
         }
-        
     </style>
 </head>
 
@@ -42,16 +41,28 @@
         <label>
             <input type="checkbox" id="selloEnvases" />
             <span></span>
-            Sello Envases
+            Sello Envases Universales
         </label>
 
         <label>
             <input type="checkbox" id="selloAltaCargo" checked />
             <span></span>
-            Sello AltaCargo
+            Sello AltaCargo Manzanillo
         </label>
 
+        <label>
+            <input type="checkbox" id="selloAltacargoVeracruz" />
+            <span></span>
+            Sello Altacargo Veracruz
+        </label>
+
+        <label>
+            <input type="checkbox" id="selloAltacargoVeronica" />
+            <span></span>
+            Sello Altacargo Veronica Altamira
+        </label>
     </div>
+
 
     <input type="file" id="pdfUploader" accept="application/pdf" multiple style="padding: 10px; margin-top: 20px;" />
 
@@ -61,6 +72,20 @@
         const uploader = document.getElementById("pdfUploader");
         const chkEnvases = document.getElementById("selloEnvases");
         const chkAltaCargo = document.getElementById("selloAltaCargo");
+        const chkVeronica = document.getElementById("selloAltacargoVeronica");
+        const chkVeracruz = document.getElementById("selloAltacargoVeracruz");
+
+        const sellosTerminales = [chkAltaCargo, chkVeracruz, chkVeronica];
+
+        sellosTerminales.forEach((checkbox) => {
+            checkbox.addEventListener("change", () => {
+                if (checkbox.checked) {
+                    sellosTerminales.forEach(cb => {
+                        if (cb !== checkbox) cb.checked = false;
+                    });
+                }
+            });
+        });
 
         async function cargarSello(pdfDoc, url, tipo = 'png') {
             const response = await fetch(url);
@@ -86,6 +111,9 @@
 
                         let selloEnvasesImg = null;
                         let selloAltaCargoImg = null;
+                        let selloVeronicaImg = null;
+                        let selloVeracruzImg = null;
+
 
                         if (chkEnvases.checked) {
                             selloEnvasesImg = await cargarSello(pdfDoc, 'selloEnvases.png', 'png');
@@ -94,10 +122,19 @@
                             selloAltaCargoImg = await cargarSello(pdfDoc, 'selloAltaCargo.png', 'png');
                         }
 
-                        if (!selloEnvasesImg && !selloAltaCargoImg) {
-                            alert("⚠️ Debes seleccionar al menos un sello para agregar.");
+                        if (chkVeracruz.checked) {
+                            selloVeracruzImg = await cargarSello(pdfDoc, 'selloAltacargoVeracruz.png', 'png');
+                        }
+
+                        if (chkVeronica.checked) {
+                            selloVeronicaImg = await cargarSello(pdfDoc, 'selloAltacargoVeronica.png', 'png');
+                        }
+
+                        if (!selloAltaCargoImg && !selloVeracruzImg && !selloVeronicaImg) {
+                            alert("⚠️ Debes seleccionar un sello de terminal (Manzanillo, Veracruz o Verónica).");
                             return;
                         }
+
 
                         const selloWidthALTACARGO = 200;  // Tamaño para sello AltaCargo
                         const selloWidthENVASES = 220;    // Tamaño para sello Envases (más pequeño)
@@ -127,6 +164,30 @@
                                     opacity: 1
                                 });
                             }
+
+
+                            if (selloVeronicaImg) {
+                                const selloHeight = (selloVeronicaImg.height / selloVeronicaImg.width) * selloWidthALTACARGO;
+                                page.drawImage(selloVeronicaImg, {
+                                    x: width - selloWidthALTACARGO - 10,
+                                    y: height - selloHeight - 430,
+                                    width: selloWidthALTACARGO,
+                                    height: selloHeight,
+                                    opacity: 1
+                                });
+                            }
+
+                            if (selloVeracruzImg) {
+                                const selloHeight = (selloVeracruzImg.height / selloVeracruzImg.width) * selloWidthALTACARGO;
+                                page.drawImage(selloVeracruzImg, {
+                                    x: width - selloWidthALTACARGO - 10,
+                                    y: height - selloHeight - 430,
+                                    width: selloWidthALTACARGO,
+                                    height: selloHeight,
+                                    opacity: 1
+                                });
+                            }
+
 
                             console.log(`✅ Sellos insertados en página ${index + 1}`);
                         }
@@ -159,9 +220,9 @@
     </script>
 
     <div class="footer">
-  Endoso automático creado por <span>Zyronix-LG</span> 🌬️🍃
-  
-</div>
+        Endoso automático creado por <span>Zyronix-LG</span> 🌬️🍃
+
+    </div>
 
 </body>
 

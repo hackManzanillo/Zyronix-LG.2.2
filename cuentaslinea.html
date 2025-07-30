@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Navieras - Información y PDF</title>
+  <title>Navieras - Información</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
@@ -50,11 +51,25 @@
     }
 
     .naviera-box h3 {
-      margin: 0 0 18px 0;
+      margin: 0 0 6px 0;
       text-align: center;
       color: #00e0ff;
       font-size: 1.6em;
       text-shadow: 0 0 5px #00e0ff;
+    }
+
+    /* Badge para identificar Cargos Collect y Demoras */
+    .badge-cargos {
+      background-color: #a000c8; /* morado */
+      color: white;
+      font-size: 0.85em;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 12px;
+      padding: 4px 12px;
+      width: fit-content;
+      margin: 0 auto 15px auto;
+      box-shadow: 0 0 10px #a000c8;
     }
 
     textarea {
@@ -70,54 +85,61 @@
       margin-bottom: 20px;
     }
 
-    textarea:disabled {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: #444;
-    }
-
     .buttons {
       display: flex;
-      justify-content: space-between;
-      gap: 10px;
+      justify-content: center;
     }
 
     button {
-      flex: 1;
-      padding: 10px;
+      padding: 10px 20px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       color: white;
       font-weight: 600;
       font-size: 1em;
+      background-color: #00bfff;
       transition: background-color 0.3s ease;
     }
 
-    button.edit-btn {
-      background-color: #28a745;
+    button:hover {
+      background-color: #0099cc;
     }
 
-    button.edit-btn.editing {
-      background-color: #dc3545;
+    #notificacion {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #a000c8;
+      /* morado */
+      color: white;
+      padding: 12px 24px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #a000c8;
+      font-size: 1em;
+      font-weight: bold;
+      z-index: 9999;
+      display: none;
+      animation: fadeInOut 2s ease-in-out forwards;
     }
 
-    button.upload-btn {
-      background-color: #007bff;
-      position: relative;
-      overflow: hidden;
-    }
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+      }
 
-    button.upload-btn input[type="file"] {
-      position: absolute;
-      left: 0; top: 0;
-      opacity: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-    }
+      10%,
+      90% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
 
-    button.download-btn {
-      background-color: #6f42c1;
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+      }
     }
 
     @media (max-width: 600px) {
@@ -127,111 +149,132 @@
     }
   </style>
 </head>
+
 <body>
 
-<h1>Cuenta de Navieras y CSF</h1>
+  <h1>Cuentas de Navieras</h1>
 
-<div class="container" id="navierasContainer">
-  <!-- Cuadros generados por JS -->
-</div>
+  <div class="container" id="navierasContainer"></div>
 
-<script>
-  const navieras = [
-    "CMA CGM", "COSCO", "WAN HAI",
-    "PIL", "RCL", "YAMATO",
-    "EVERGREEN", "ONE",
-    "TS LINE", "MAERSK",
-    "ZIM", "OOCL",
-    "SEALAND", "MSC", "HAPAG-LLOYD"
-  ];
+  <!-- Notificación -->
+  <div id="notificacion">📋 Texto copiado al portapapeles</div>
 
-  const container = document.getElementById('navierasContainer');
+  <script>
+    const navieras = [
+      "CMA CGM", "COSCO", "WAN HAI",
+      "PIL", "RCL", "YAMATO",
+      "EVERGREEN", "ONE",
+      "TS LINE", "MAERSK",
+      "ZIM", "OOCL",
+      "SEALAND"," MSC ", "HAPAG-LLOYD"
+    ];
 
-  function guardarTexto(naviera, texto) {
-    localStorage.setItem(`texto_${naviera}`, texto);
-  }
+    const container = document.getElementById('navierasContainer');
 
-  function cargarTexto(naviera) {
-    return localStorage.getItem(`texto_${naviera}`) || "";
-  }
+    function cargarTexto(naviera) {
+      const guardado = localStorage.getItem(`texto_${naviera}`);
+      if (guardado) return guardado;
 
-  function guardarPDF(naviera, file) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const base64 = e.target.result;
-      localStorage.setItem(`pdf_${naviera}`, base64);
-      alert(`📄 PDF guardado correctamente para ${naviera}`);
-    };
-    reader.readAsDataURL(file);
-  }
+      if (naviera === "CMA CGM") {
+        return `RAZON SOCIAL: CMA CGM & ANL (MEX) SEC.
+BANCO: BNP PARIBAS NEW YORK
+MONEDA: USD
+NUMERO DE CUENTA: 20062494100148
+SWIFT CODE: BNPAUS3N
+FEDWIRE ABA: 026007689
+CHIPS ABA: 0768
+IMPORTE DEL PAGO: (MONTO)
+BL: (BL)`;
+      }
 
-  function descargarPDF(naviera) {
-    const dataURL = localStorage.getItem(`pdf_${naviera}`);
-    if (!dataURL) {
-      alert("⚠️ No hay PDF guardado para esta naviera.");
-      return;
+      if (naviera === "COSCO") {
+        return `RAZON SOCIAL: COSCO SHIPPING LINES MEXICO S DE RL DE CV
+BANCO: JP MORGAN CHASE BANK SA
+MONEDA: USD
+NUMERO DE CUENTA: 880285643
+SWIFT CODE: CHASUS33
+ABA: 021000021
+DIRECCION: 270 PARK AVENUE, NEW YORK, NY 10017 USA
+IMPORTE DEL PAGO: (MONTO)
+BL: (BL)`;
+      }  
+
+      if (naviera === "WAN HAI") {
+        return `RAZON SOCIAL: WAN HAI LINES MEXICO SA DE CV
+RFC: WHL2209281Q2
+BANCO: BANCO MONEX S.A. INSTITUCIÓN DE BANCA MÚLTIPLE, MONEX GRUPO FINANCIERO
+MONEDA: USD
+CLABE INTERBANCARIA: 112180200536123140
+NUMERO DE CUENTA: 3612314
+NUMERO DE BANCO: 112180
+DOMICILIO:PASEO DE LA REFORMA 284, COL. JUÁREZ, CIUDAD DE MÉXICO, C.P. 06600
+IMPORTE DEL PAGO: (MONTO)
+BL: (BL)`;
+      }  
+
+      if (naviera === "YAMATO") {
+        return `YAMATO TRANSPORT MEXICO SA DE CV 
+NO. DE CUENTA: 0283670143
+CLABE: 072222002836701439
+BL: (HBL)`;
+      }  
+
+      return "";
     }
-    const link = document.createElement("a");
-    link.href = dataURL;
-    link.download = `CSF ${naviera}.pdf`;
-    link.click();
-  }
 
-  navieras.forEach(naviera => {
-    const safeId = naviera.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_]/g, ""); // ID sin espacios ni símbolos
 
-    const box = document.createElement("div");
-    box.className = "naviera-box";
+    
 
-    box.innerHTML = `
-      <h3>${naviera}</h3>
-      <textarea id="txt_${safeId}" disabled></textarea>
-      <div class="buttons">
-        <button class="edit-btn" id="edit_${safeId}">Editar</button>
-        <button class="upload-btn">Subir CSF
-          <input type="file" accept="application/pdf" id="file_${safeId}">
-        </button>
-        <button class="download-btn" id="download_${safeId}">Descargar CSF</button>
-      </div>
-    `;
-    container.appendChild(box);
+    navieras.forEach(naviera => {
+      const safeId = naviera.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_]/g, "");
 
-    const textarea = box.querySelector(`#txt_${safeId}`);
-    const editBtn = box.querySelector(`#edit_${safeId}`);
-    const fileInput = box.querySelector(`#file_${safeId}`);
-    const downloadBtn = box.querySelector(`#download_${safeId}`);
-
-    textarea.value = cargarTexto(naviera);
-
-    editBtn.addEventListener("click", () => {
-      if (textarea.disabled) {
-        textarea.disabled = false;
-        textarea.focus();
-        editBtn.textContent = "Guardar";
-        editBtn.classList.add("editing");
-      } else {
-        textarea.disabled = true;
-        editBtn.textContent = "Editar";
-        editBtn.classList.remove("editing");
-        guardarTexto(naviera, textarea.value);
+      let badgeHTML = "";
+      if (naviera === "CMA CGM") {
+        badgeHTML = '<div class="badge-cargos">Revalidación, Flete Marítimo y Demoras</div>';
+      } else if (naviera === "COSCO") {
+        badgeHTML = '<div class="badge-cargos">Revalidación</div>';
       }
-    });
-
-    fileInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (file && file.type === "application/pdf") {
-        guardarPDF(naviera, file);
-      } else {
-        alert("⚠️ Solo se permite subir archivos PDF.");
+      if (naviera === "WAN HAI") {
+        badgeHTML = '<div class="badge-cargos">Revalidación Envases Universales</div>';
+      } else if (naviera === "YAMATO") {
+        badgeHTML = '<div class="badge-cargos">Revalidación</div>';
       }
-      e.target.value = "";
+
+      const box = document.createElement("div");
+      box.className = "naviera-box";
+      box.innerHTML = `
+        <h3>${naviera}</h3>
+        ${badgeHTML}
+        <textarea id="txt_${safeId}">${cargarTexto(naviera)}</textarea>
+        <div class="buttons">
+          <button onclick="copiarTexto('txt_${safeId}')">Copiar Texto</button>
+        </div>
+      `;
+
+      container.appendChild(box);
     });
 
-    downloadBtn.addEventListener("click", () => {
-      descargarPDF(naviera);
-    });
-  });
-</script>
+    function copiarTexto(id) {
+      const textarea = document.getElementById(id);
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+
+      const noti = document.getElementById('notificacion');
+      noti.style.display = 'block';
+
+      // Reiniciar animación si ya se mostró antes
+      noti.style.animation = 'none';
+      noti.offsetHeight; // forzar reflujo
+      noti.style.animation = 'fadeInOut 2s ease-in-out forwards';
+
+      setTimeout(() => {
+        noti.style.display = 'none';
+      }, 2000);
+    }
+  </script>
 
 </body>
+
 </html>
+

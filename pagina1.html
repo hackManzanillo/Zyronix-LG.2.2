@@ -7,7 +7,6 @@
   <title>Zyronix-LG - Menú con Dropdown Anidado</title>
   <link rel="stylesheet" href="DiseñoPagina1.css" />
   <style>
-    /* Estilos para dropdown y submenu */
     .dropdown {
       position: relative;
       display: inline-block;
@@ -35,7 +34,6 @@
       display: block;
     }
 
-    /* Submenu estilo */
     .submenu {
       position: relative;
     }
@@ -67,70 +65,71 @@
     <h2 class="logo">Zyronix-LG</h2>
 
     <nav class="navigation">
+      <!-- Reportes -->
       <div class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn" id="dropdownBtn">
-          Reportes <span class="ivu-icon-arrow-down-b"></span>
-        </a>
-        <div class="dropdown-content" id="dropdownMenu">
-          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BDC4A1189-FF37-4F03-A5A9-F16800B522F7%7D&file=REVALIDACIONES%20MANZANILLO%202025%201%20(1).xlsx&action=default&mobileredirect=true"
-            target="_blank">Reporte Manzanillo</a>
-          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BAAA118C7-F646-4DB4-A1D9-BFF3B8FD8041%7D&file=PAGOS%20DE%20REVALIDACION%20%202025%201.xlsx&action=default&mobileredirect=true"
-            target="_blank">Reporte De Pagos</a>
+        <a href="javascript:void(0)" class="dropbtn">Reportes <span class="ivu-icon-arrow-down-b"></span></a>
+        <div class="dropdown-content">
+          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BDC4A1189-FF37-4F03-A5A9-F16800B522F7%7D&file=REVALIDACIONES%20MANZANILLO%202025%201%20(1).xlsx&action=default&mobileredirect=true" target="_blank">Reporte Manzanillo</a>
+          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BAAA118C7-F646-4DB4-A1D9-BFF3B8FD8041%7D&file=PAGOS%20DE%20REVALIDACION%20%202025%201.xlsx&action=default&mobileredirect=true" target="_blank">Reporte De Pagos</a>
           <a href="cuentaslinea.html">Cuentas Bancarias</a>
         </div>
       </div>
 
+      <!-- Navieras -->
       <div class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn" id="dropdownBtn1">
-          Navieras <span class="ivu-icon-arrow-down-b"></span>
-        </a>
-        <div class="dropdown-content" id="dropdownMenu1">
-          <!-- Submenu para Tracking -->
+        <a href="javascript:void(0)" class="dropbtn">Navieras <span class="ivu-icon-arrow-down-b"></span></a>
+        <div class="dropdown-content">
+
+          <!-- Tracking -->
           <div class="submenu">
-            <a href="javascript:void(0)" id="trackingBtn">◃Tracking</a>
-            <div class="dropdown-content" id="trackingMenu">
-              <a href="https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do" target="_blank">Evergreen</a>
-              <a href="https://www.hapag-lloyd.com/en/online-business/tracing/tracing-by-container.html"
-                target="_blank">Hapag-Lloyd</a>
+            <a href="javascript:void(0)">◃ Tracking</a>
+            <div class="dropdown-content">
+              <a href="https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do" target="_blank">EVERGREEN</a>
+              <a href="https://www.hapag-lloyd.com/en/online-business/tracing/tracing-by-container.html" target="_blank">HAPANG</a>
               <a href="https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking" target="_blank">ONE</a>
               <a href="https://elines.coscoshipping.com/ebusiness/cargoTracking/" target="_blank">COSCO</a>
               <a href="https://www.cma-cgm.com/ebusiness/tracking" target="_blank">CMA CGM</a>
-              <a href="https://www.maersk.com/tracking" target="_blank">Maersk</a>
+              <a href="https://www.maersk.com/tracking" target="_blank">MAERSK</a>
               <a href="https://www.msc.com/track-a-shipment" target="_blank">MSC</a>
-              <a href="https://www.oocl.com/eng/ourservices/eservices/cargotracking/Pages/cargotracking.aspx"
-                target="_blank">OOCL</a>
+              <a href="https://www.oocl.com/eng/ourservices/eservices/cargotracking/Pages/cargotracking.aspx" target="_blank">OOCL</a>
               <a href="https://www.zim.com/tools/track-a-shipment" target="_blank">ZIM</a>
-              <a href="https://www.tslines.com/hk/tracking?nowmenu=Search%20by%20BL%20number" target="_blank">TS
-                Lines</a>
-              <a href="https://www.sea-lead.com/track-shipment/" target="_blank">Sealand</a>
-              <a href="https://www.emiratesline.com/track/" target="_blank">Emirates Shipping</a>
+              <a href="https://www.tslines.com/hk/tracking?nowmenu=Search%20by%20BL%20number" target="_blank">TS LINES</a>
+              <a href="https://www.sea-lead.com/track-shipment/" target="_blank">SEALEAD</a>
+              <a href="https://www.emiratesline.com/track/" target="_blank">EMIRATES SHIPPING</a>
             </div>
           </div>
 
-          <a href="estadoCarga.html">Estado De Carga</a>
+          <!-- Estado de carga -->
+          <div class="submenu">
+            <a href="javascript:void(0)">◃ Estado De Carga</a>
+            <div class="dropdown-content">
+              <a href="https://mx-one-line.azurewebsites.net/appphp/revalidacion/consulta.php">ONE</a>
+              <a href="https://www.agunsamexico.com.mx/">WAN HAI</a>
+              <a href="https://sion.mscmexico.com/actions/liberacionesBusquedaBL.php">MSC</a>
+              <a href="https://tslines.agunsa.com.mx/">TS LINES</a>
+              <a href="https://revalidacionesmsk.com/">MAERSK</a>
+              <a href="https://landing.yamato.id/tracking">YAMATO</a>
+              <a href="https://www.altamaritima.com.mx/TrackingNavieras.aspx">ALTAMARITIMA GENERAL</a>
+              <a href="https://mexpacific.com.mx/tracking-sinokor/">SINOKOR</a>
+              <a href="https://agencianavepac.com.mx/tracking-sealead/">SEALEAD</a>
+              <a href="https://tierramaraire.com.mx/tracking_emirates/">EMIRATES SHIPPING</a>
+              <a href="https://www.kenrick.mx/tracking">NORTON TILLY</a>
+              <a href="https://www.zim.com/es/tools/custom-release-status">ZIM</a>
+            </div>
+          </div>
         </div>
       </div>
 
-
-
-
-      </div>
-      </div>
-
+      <!-- Herramientas -->
       <div class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn" id="dropdownBtn2">
-          Herramientas <span class="ivu-icon-arrow-down-b"></span>
-        </a>
-        <div class="dropdown-content" id="dropdownMenu2">
-
-          <a href="AUTOENDOSO.HTML">Endosador automatico</a>
-          <a href="#">Auto Cartas (proximamente)</a>
-
+        <a href="javascript:void(0)" class="dropbtn">Herramientas <span class="ivu-icon-arrow-down-b"></span></a>
+        <div class="dropdown-content">
+          <a href="AUTOENDOSO.HTML">Endosador automático</a>
+          <a href="#">Auto Cartas (próximamente)</a>
         </div>
       </div>
-      </div>
-      </div>
 
+      <!-- Contacto -->
       <a href="contacto.html">Contacto</a>
     </nav>
   </header>
