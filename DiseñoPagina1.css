@@ -194,3 +194,49 @@ nav.navigation > a:hover::after,
     min-width: 140px;
   }
 }
+
+
+/* Sección de tracking en el cuerpo */
+.tracking-section {
+  margin: 40px auto;
+  padding: 20px;
+  max-width: 1000px;
+  text-align: center;
+  background: rgba(22,41,56,0.8);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  color: #fff;
+}
+
+.tracking-section h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Grid de logos */
+.tracking-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+}
+
+.tracking-logos a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 12px;
+  transition: background 0.3s ease;
+}
+
+.tracking-logos a:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.tracking-logos img {
+  max-width: 100px;
+  max-height: 50px;
+  object-fit: contain;
+}
+

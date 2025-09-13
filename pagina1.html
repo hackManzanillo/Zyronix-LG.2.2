@@ -34,28 +34,31 @@
       display: block;
     }
 
-    .submenu {
-      position: relative;
+    /* Estilos generales de secciones */
+    .tracking-section {
+      padding: 40px 20px;
+      text-align: center;
     }
 
-    .submenu:hover>.dropdown-content {
-      display: block;
-      top: 0;
-      right: 100%;
-      margin-right: 1px;
-      left: auto;
+    .tracking-section h2 {
+      margin-bottom: 20px;
+      color: #fff;
     }
 
-    .submenu .dropdown-content {
-      position: absolute;
-      top: 0;
-      right: 100%;
-      min-width: 180px;
-      background-color: #111;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 2;
-      display: none;
-      left: auto;
+    .tracking-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .tracking-logos img {
+      max-height: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    .tracking-logos img:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
@@ -69,8 +72,10 @@
       <div class="dropdown">
         <a href="javascript:void(0)" class="dropbtn">Reportes <span class="ivu-icon-arrow-down-b"></span></a>
         <div class="dropdown-content">
-          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BDC4A1189-FF37-4F03-A5A9-F16800B522F7%7D&file=REVALIDACIONES%20MANZANILLO%202025%201%20(1).xlsx&action=default&mobileredirect=true" target="_blank">Reporte Manzanillo</a>
-          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BAAA118C7-F646-4DB4-A1D9-BFF3B8FD8041%7D&file=PAGOS%20DE%20REVALIDACION%20%202025%201.xlsx&action=default&mobileredirect=true" target="_blank">Reporte De Pagos</a>
+          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BDC4A1189-FF37-4F03-A5A9-F16800B522F7%7D&file=REVALIDACIONES%20MANZANILLO%202025%201%20(1).xlsx&action=default&mobileredirect=true"
+            target="_blank">Reporte Manzanillo</a>
+          <a href="https://altacargo1-my.sharepoint.com/:x:/r/personal/gael_lazaro_altacargo_com/_layouts/15/Doc.aspx?sourcedoc=%7BAAA118C7-F646-4DB4-A1D9-BFF3B8FD8041%7D&file=PAGOS%20DE%20REVALIDACION%20%202025%201.xlsx&action=default&mobileredirect=true"
+            target="_blank">Reporte De Pagos</a>
           <a href="cuentaslinea.html">Cuentas Bancarias</a>
         </div>
       </div>
@@ -79,44 +84,8 @@
       <div class="dropdown">
         <a href="javascript:void(0)" class="dropbtn">Navieras <span class="ivu-icon-arrow-down-b"></span></a>
         <div class="dropdown-content">
-
-          <!-- Tracking -->
-          <div class="submenu">
-            <a href="javascript:void(0)">◃ Tracking</a>
-            <div class="dropdown-content">
-              <a href="https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do" target="_blank">EVERGREEN</a>
-              <a href="https://www.hapag-lloyd.com/en/online-business/tracing/tracing-by-container.html" target="_blank">HAPANG</a>
-              <a href="https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking" target="_blank">ONE</a>
-              <a href="https://elines.coscoshipping.com/ebusiness/cargoTracking/" target="_blank">COSCO</a>
-              <a href="https://www.cma-cgm.com/ebusiness/tracking" target="_blank">CMA CGM</a>
-              <a href="https://www.maersk.com/tracking" target="_blank">MAERSK</a>
-              <a href="https://www.msc.com/track-a-shipment" target="_blank">MSC</a>
-              <a href="https://www.oocl.com/eng/ourservices/eservices/cargotracking/Pages/cargotracking.aspx" target="_blank">OOCL</a>
-              <a href="https://www.zim.com/tools/track-a-shipment" target="_blank">ZIM</a>
-              <a href="https://www.tslines.com/hk/tracking?nowmenu=Search%20by%20BL%20number" target="_blank">TS LINES</a>
-              <a href="https://www.sea-lead.com/track-shipment/" target="_blank">SEALEAD</a>
-              <a href="https://www.emiratesline.com/track/" target="_blank">EMIRATES SHIPPING</a>
-            </div>
-          </div>
-
-          <!-- Estado de carga -->
-          <div class="submenu">
-            <a href="javascript:void(0)">◃ Estado De Carga</a>
-            <div class="dropdown-content">
-              <a href="https://mx-one-line.azurewebsites.net/appphp/revalidacion/consulta.php">ONE</a>
-              <a href="https://www.agunsamexico.com.mx/">WAN HAI</a>
-              <a href="https://sion.mscmexico.com/actions/liberacionesBusquedaBL.php">MSC</a>
-              <a href="https://tslines.agunsa.com.mx/">TS LINES</a>
-              <a href="https://revalidacionesmsk.com/">MAERSK</a>
-              <a href="https://landing.yamato.id/tracking">YAMATO</a>
-              <a href="https://www.altamaritima.com.mx/TrackingNavieras.aspx">ALTAMARITIMA GENERAL</a>
-              <a href="https://mexpacific.com.mx/tracking-sinokor/">SINOKOR</a>
-              <a href="https://agencianavepac.com.mx/tracking-sealead/">SEALEAD</a>
-              <a href="https://tierramaraire.com.mx/tracking_emirates/">EMIRATES SHIPPING</a>
-              <a href="https://www.kenrick.mx/tracking">NORTON TILLY</a>
-              <a href="https://www.zim.com/es/tools/custom-release-status">ZIM</a>
-            </div>
-          </div>
+          <a href="javascript:void(0)" onclick="mostrarSeccion('trackingSection')">Tracking</a>
+          <a href="javascript:void(0)" onclick="mostrarSeccion('estadoSection')">Estado de Carga</a>
         </div>
       </div>
 
@@ -134,7 +103,120 @@
     </nav>
   </header>
 
+  <!-- Contenido principal -->
+  <main>
+    <!-- Tracking -->
+    <div id="trackingSection" class="tracking-section" style="display:none;">
+      <h2>Tracking de Navieras</h2>
+      <div class="tracking-logos">
+       <a href="https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do" target="_blank">
+          <img src="EVERGREEN.svg" alt="Evergreen">
+        </a>
+        <a href="https://www.hapag-lloyd.com/en/online-business/tracing/tracing-by-container.html" target="_blank">
+          <img src="HAPANG.png" alt="HAPAG">
+        </a>
+        <a href="https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking" target="_blank">
+          <img src="ONE.png" alt="ONE">
+        </a>
+         <a href="https://www.wanhai.com/views/cargo_track_v2/tracking_query.xhtml" target="_blank">
+          <img src="WAN HAI.png" alt="Wan Hai">
+        </a>
+        <a href="https://elines.coscoshipping.com/ebusiness/cargoTracking/" target="_blank">
+          <img src="COSCO.png" alt="COSCO">
+        </a>
+        <a href="https://www.cma-cgm.com/ebusiness/tracking" target="_blank">
+          <img src="CMA CGM.png" alt="CMA CGM">
+        </a>
+        <a href="https://www.maersk.com/tracking" target="_blank">
+          <img src="MAERSK.png" alt="MAERSK">
+        </a>
+        <a href="https://www.msc.com/track-a-shipment" target="_blank">
+          <img src="MSC.png"
+            alt="MSC">
+        </a>
+        <a href="https://www.oocl.com/eng/ourservices/eservices/cargotracking/Pages/cargotracking.aspx" target="_blank">
+          <img src="OOCL.png" alt="OOCL">
+        </a>
+        <a href="https://www.zim.com/tools/track-a-shipment" target="_blank">
+          <img src="ZIM.png"
+            alt="ZIM">
+        </a>
+        <a href="https://www.tslines.com/hk/tracking?nowmenu=Search%20by%20BL%20number" target="_blank">
+          <img src="TSLINES.png" alt="TS LINES">
+        </a>
+        <a href="https://ebiz.sinokor.co.kr/?lang=EN" target="_blank">
+          <img src="SINOKOR.jpg" alt="SINOKOR">
+        </a>
+        <a href="https://www.sea-lead.com/track-shipment/" target="_blank">
+          <img src="https://www.sea-lead.com/wp-content/uploads/2025/07/dark-logo.svg" alt="SEALEAD">
+        </a>
+        <a href="https://www.emiratesline.com/track/" target="_blank">
+          <img src="EMIRATES.jpg" alt="Emirates">
+        </a>
+         <a href="https://landing.yamato.id/tracking" target="_blank">
+          <img src="YAMATO.png" alt="Yamato">
+        </a>
+         </a>
+         <a href="https://www.pilship.com/digital-solutions/?tab=customer&id=track-trace&label=containerTandT&module=TrackTraceBL&refNo=" target="_blank">
+          <img src="PIL.webp" alt="Pil">
+        </a>
+        </a>
+         <a href="https://www.rclgroup.com/" target="_blank">
+          <img src="RCL.png" alt="RCL">
+        </a>
+        </a>
+         <a href="https://www.ekmtc.com/index.html#/main" target="_blank">
+          <img src="KMTC.png" alt="KMTC">
+        </a>
+         </a>
+         <a href="https://e-solution.yangming.com/ErrorLogs/500Error.html?aspxerrorpath=/e-service/Track_Trace/track_trace_cargo_tracking.aspx" target="_blank">
+          <img src="YANG MING.png" alt="YANG MING">
+        </a>
+         </a>
+         <a href="https://ebusiness.sinolines.com.cn/Ebusiness/EQUERY/TrackingCargoE.aspx?subject=BLNO&item" target="_blank">
+          <img src="sinolines.png" alt="SinoLines">
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Estado de carga -->
+    <div id="estadoSection" class="tracking-section" style="display:none;">
+      <h2>Estado de Carga</h2>
+      <div class="tracking-logos">
+        <a href="https://mx-one-line.azurewebsites.net/appphp/revalidacion/consulta.php" target="_blank"><img src="ONE.png" alt="ONE"></a>
+        <a href="https://www.agunsamexico.com.mx/" target="_blank"><img src="WAN HAI.png" alt="WAN HAI"></a>
+        <a href="https://sion.mscmexico.com/actions/liberacionesBusquedaBL.php" target="_blank"><img src="MSC.png" alt="MSC"></a>
+        <a href="https://tslines.agunsa.com.mx/" target="_blank"><img src="TSLINES.png" alt="TS LINES"></a>
+        <a href="https://revalidacionesmsk.com/" target="_blank"><img src="MAERSK.png" alt="MAERSK"></a>
+        <a href="https://landing.yamato.id/tracking" target="_blank"><img src="YAMATO.png" alt="YAMATO"></a>
+        <a href="https://www.altamaritima.com.mx/TrackingNavieras.aspx" target="_blank"><img src="ALTAMARITIMA.png" alt="ALTAMARITIMA"></a>
+        <a href="https://mexpacific.com.mx/tracking-sinokor/" target="_blank"><img src="SINOKOR.jpg" alt="SINOKOR"></a>
+        <a href="https://agencianavepac.com.mx/tracking-sealead/" target="_blank"><img src="https://www.sea-lead.com/wp-content/uploads/2025/07/dark-logo.svg" alt="SEALEAD"></a>
+        <a href="https://tierramaraire.com.mx/tracking_emirates/" target="_blank"><img src="EMIRATES.jpg" alt="EMIRATES"></a>
+        <a href="https://www.kenrick.mx/tracking" target="_blank"><img src="NORTON LILLY.png" alt="NORTON TILLY"></a>
+        <a href="https://www.zim.com/es/tools/custom-release-status" target="_blank"><img src="ZIM.png" alt="ZIM"></a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function mostrarSeccion(id) {
+      // Oculta ambas secciones
+      document.getElementById("trackingSection").style.display = "none";
+      document.getElementById("estadoSection").style.display = "none";
+
+      // Muestra la que toca
+      const section = document.getElementById(id);
+      section.style.display = "block";
+
+      // Scroll suave
+      window.scrollTo({ top: section.offsetTop - 80, behavior: 'smooth' });
+    }
+  </script>
+
   <script src="REPORTES.JS"></script>
 </body>
 
 </html>
+
